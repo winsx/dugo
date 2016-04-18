@@ -2,8 +2,9 @@ package wx
 
 import(
     "fmt"
-    "http"
+    "net/http"
     "github.com/alimy/dugo/wx/config"
+    "github.com/alimy/dugo/wx/serve"
 )
 
 const(
@@ -24,10 +25,12 @@ func init() {
 }
 
 func NewWx() (wx *WeChat) {
-    wx = &WeChat{
-        AppID: "wx609f9cb8513d8552"
-        AppSecret: "8e801592ee58eaaeb6f11668d81558f8"
-        GrantType: "client_credential
+    wx = &WeChat{WxConfig:
+        config.WxConfig{
+            AppID: "wx609f9cb8513d8552",
+            AppSecret: "8e801592ee58eaaeb6f11668d81558f8",
+            GrantType: "client_credential",
+        },
     }
 
     wx.client = newClient()
@@ -37,5 +40,5 @@ func NewWx() (wx *WeChat) {
 }
 
 func WxAccessTockenUrl(grantType, appId, secret string) string {
-    return fmt.Sprintf(wxAccessToken, grantType, apiId, secret)
+    return fmt.Sprintf(wxAccessTokenUrl, grantType, appId, secret)
 }

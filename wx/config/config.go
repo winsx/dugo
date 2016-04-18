@@ -1,6 +1,6 @@
 package config
 
-type WxConfig {
+type WxConfig struct {
     AppID string
     AppSecret string
     GrantType string

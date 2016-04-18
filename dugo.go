@@ -2,7 +2,6 @@ package main
 
 import(
     "fmt"
-    "os"
     "net/http"
     "time"
     "log"
@@ -22,7 +21,7 @@ func run() {
     sm := http.NewServeMux()
     sm.Handle("/", &service.IndexHandler{})
     sm.Handle("/wx", wx.Wx)
-    sm.HandleFunc("/token", func(w http.ResponseWriter, r http.Request){
+    sm.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request){
         token := wx.Wx.AccessToken()
         fmt.Fprintf(w, "%s", token)
         fmt.Println("%s", token)

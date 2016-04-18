@@ -1,5 +1,10 @@
 package wx
 
+import(
+    "io/ioutil"
+    "io"
+)
+
 type WxTocken interface {
     AccessToken()
     UpdateAccessToken()
@@ -13,17 +18,18 @@ func (wx *WeChat) AccessToken() (accessToken string) {
 }
 
 func (wx *WeChat) UpdateAccessToken() {
-     resp, err := wx.client.Get(WxAccessToken(grantType, appId, secret))
+    url := WxAccessTockenUrl(wx.GrantType, wx.AppID, wx.AppSecret)
+     resp, err := wx.client.Get(url)
     if err != nil {
 	// handle error
     }
     defer resp.Body.Close()
     
-    wx.accessToken = parseTokenFrom(resp)
+    wx.accessToken = parseTokenFrom(resp.Body)
 }
 
 func parseTokenFrom(r io.Reader) (token string) {
-    body, err := ioutil.ReadAll(resp.Body)
+    body, _ := ioutil.ReadAll(r)
     
     return string(body)
 }
