@@ -8,8 +8,16 @@ import(
     . "github.com/alimy/dugo/services/wx/config"
 )
 
+var Token *WxToken 
+
 type WxToken struct {
     accessToken string
+}
+
+func init() {
+    if Token == nil {
+        Token = &WxToken{}
+    }
 }
 
 func (wx *WxToken) AccessToken() (accessToken string) {

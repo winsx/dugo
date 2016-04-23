@@ -7,10 +7,10 @@ import(
     "log"
     "github.com/alimy/dugo/services/wx"
     "github.com/alimy/dugo/routers"
+    "github.com/alimy/dugo/services/wx/services/token"
 )
 
 var(
-    Wx = wx.Classic()
     server = &http.Server{
 	    Addr:           ":8080",
 	    Handler:        nil,
@@ -23,9 +23,9 @@ var(
 func run() {
     sm := http.NewServeMux()
     sm.Handle("/", &routers.HomeHandler{})
-    sm.Handle("/wx", Wx)
+    sm.Handle("/wx", wx.Wx.Handler)
     sm.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request){
-        token := Wx.AccessToken()
+        token := token.Token.AccessToken()
         fmt.Fprintf(w, "%s", token)
         fmt.Println("%s", token)
     })
