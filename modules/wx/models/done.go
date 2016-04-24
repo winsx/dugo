@@ -1,3 +1,3 @@
-package content
+package models
 
 type Done struct{}

@@ -3,9 +3,9 @@ package token
 import(
     "io/ioutil"
     "io"
-    "github.com/alimy/dugo/services/wx/content/api"
-    . "github.com/alimy/dugo/services/wx/services/client"
-    . "github.com/alimy/dugo/services/wx/config"
+    "github.com/alimy/dugo/modules/wx/models/api"
+    . "github.com/alimy/dugo/modules/wx/modules/client"
+    . "github.com/alimy/dugo/modules/wx/config"
 )
 
 var Token *WxToken 

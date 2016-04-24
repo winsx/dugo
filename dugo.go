@@ -5,9 +5,9 @@ import(
     "net/http"
     "time"
     "log"
-    "github.com/alimy/dugo/services/wx"
+    "github.com/alimy/dugo/modules/wx"
     "github.com/alimy/dugo/routers"
-    "github.com/alimy/dugo/services/wx/services/token"
+    "github.com/alimy/dugo/modules/wx/modules/token"
 )
 
 var(

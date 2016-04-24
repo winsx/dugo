@@ -1,9 +1,9 @@
 package wx
 
 import(
-    "github.com/alimy/dugo/services/wx/config"
-    "github.com/alimy/dugo/services/wx/routers"
-    _ "github.com/alimy/dugo/services/wx/services/client"
+    "github.com/alimy/dugo/modules/wx/config"
+    "github.com/alimy/dugo/modules/wx/routers"
+    _ "github.com/alimy/dugo/modules/wx/modules/client"
 )
 
 var Wx *WeChat
