@@ -25,9 +25,8 @@ func run() {
     sm.Handle("/", &routers.HomeHandler{})
     sm.Handle("/wx", wx.Wx.Handler)
     sm.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request){
-        token := token.Token.AccessToken()
+        token := token.Token.AccessToken
         fmt.Fprintf(w, "%s", token)
-        fmt.Println("%s", token)
     })
     sm.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request){
         http.Redirect(w, r, "http://www.baidu.com/", http.StatusTemporaryRedirect)

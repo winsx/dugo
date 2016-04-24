@@ -9,13 +9,9 @@ type WxConfig struct {
 }
 
 func init() {
-    if Config == nil {
-        Config = &WxConfig{}
-    }
-}
-
-func (c *WxConfig) Update(appID, appSecret, grantType string) {
-    c.AppID = appID
-    c.AppSecret = appSecret
-    c.GrantType = grantType
+    Config = &WxConfig{
+        AppID: "wx609f9cb8513d8552",
+        AppSecret: "8e801592ee58eaaeb6f11668d81558f8",
+        GrantType: "client_credential",
+        }
 }

@@ -41,10 +41,10 @@ func (h *WxHandler) run() {
             case <-time.After(7200 * time.Second) :
                 token.Token.UpdateAccessToken()
             case service := <- h.service :
-                service.Token = token.Token.AccessToken()
+                service.Token = token.Token.AccessToken
                 go serve(service)
             case w := <- h.test :
-                go serve3(token.Token.AccessToken(), w)
+                go serve3(w, token.Token.AccessToken)
         }
     }
 }
@@ -54,7 +54,7 @@ func serve(s *models.WxService) {
     wxSign.Serve(s)
 }
 
-func serve3(token string, w http.ResponseWriter) {
+func serve3(w http.ResponseWriter, token string) {
     wxSign := &sign.Sign{}
-    wxSign.Serve2(token, w)
+    wxSign.Serve2(w, token)
 }

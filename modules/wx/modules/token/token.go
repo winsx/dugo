@@ -2,8 +2,10 @@ package token
 
 import(
     "io/ioutil"
-    "io"
+    "encoding/json"
+    "fmt"
     "github.com/alimy/dugo/modules/wx/models/api"
+    "github.com/alimy/dugo/modules/wx/models"
     . "github.com/alimy/dugo/modules/wx/modules/client"
     . "github.com/alimy/dugo/modules/wx/config"
 )
@@ -11,35 +13,30 @@ import(
 var Token *WxToken 
 
 type WxToken struct {
-    accessToken string
+    models.WxError
+    AccessToken string `json:"access_token"`
+    ExpiresIn int `json:"expires_in"`
 }
 
 func init() {
     if Token == nil {
-        Token = &WxToken{}
+        Token = &WxToken{AccessToken: "nothing"}
+        Token.UpdateAccessToken()
     }
 }
 
-func (wx *WxToken) AccessToken() (accessToken string) {
-    if wx.accessToken == "" {
-        wx.UpdateAccessToken()
-    }
-    return wx.accessToken
-}
 
 func (wx *WxToken) UpdateAccessToken() {
     url := api.WxAccessTockenUrl(Config.GrantType, Config.AppID, Config.AppSecret)
     resp, err := Client.Get(url)
     if err != nil {
-	// handle error
+	// handle errors
     }
     defer resp.Body.Close()
     
-    wx.accessToken = parseTokenFrom(resp.Body)
-}
-
-func parseTokenFrom(r io.Reader) (token string) {
-    body, _ := ioutil.ReadAll(r)
-    
-    return string(body)
+     body, _ := ioutil.ReadAll(resp.Body)
+     
+     json.Unmarshal(body, wx)
+     fmt.Println(wx.AccessToken)
+     //json.Unmarshal(body, wx)
 }
