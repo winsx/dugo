@@ -19,7 +19,7 @@ func (*Sign) Serve2(w http.ResponseWriter, token string) {
 
 func wxSign(w http.ResponseWriter, r *http.Request, token string) {
     echoStr := r.FormValue("echostr")
-    content := fmt.Sprintf("token: %s\n echostr: %s", token, echoStr)
+    content := fmt.Sprintf("token: %s\nechostr: %s", token, echoStr)
     fmt.Fprintln(w, content)
     fmt.Println(content)
 }

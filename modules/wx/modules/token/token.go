@@ -3,7 +3,6 @@ package token
 import(
     "io/ioutil"
     "encoding/json"
-    "fmt"
     "github.com/alimy/dugo/modules/wx/models/api"
     "github.com/alimy/dugo/modules/wx/models"
     . "github.com/alimy/dugo/modules/wx/modules/client"
@@ -20,7 +19,7 @@ type WxToken struct {
 
 func init() {
     if Token == nil {
-        Token = &WxToken{AccessToken: "nothing"}
+        Token = &WxToken{}
         Token.UpdateAccessToken()
     }
 }
@@ -37,6 +36,4 @@ func (wx *WxToken) UpdateAccessToken() {
      body, _ := ioutil.ReadAll(resp.Body)
      
      json.Unmarshal(body, wx)
-     fmt.Println(wx.AccessToken)
-     //json.Unmarshal(body, wx)
 }

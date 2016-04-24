@@ -24,11 +24,11 @@ func run() {
     sm := http.NewServeMux()
     sm.Handle("/", &routers.HomeHandler{})
     sm.Handle("/wx", wx.Wx.Handler)
-    sm.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request){
+    sm.HandleFunc("/token", func(w http.ResponseWriter, r *http.Request) {
         token := token.Token.AccessToken
         fmt.Fprintf(w, "%s", token)
     })
-    sm.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request){
+    sm.HandleFunc("/redirect", func(w http.ResponseWriter, r *http.Request) {
         http.Redirect(w, r, "http://www.baidu.com/", http.StatusTemporaryRedirect)
     })
     server.Handler = sm
