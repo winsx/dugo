@@ -22,3 +22,17 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+.DS_Store
+*.db
+*.log
+.vendor/
+.idea/
+*.iml
+*.exe
+*.exe~
+/dugo
+profile/
+*.pem
+vendor
+
