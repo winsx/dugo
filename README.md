@@ -1,2 +1,2 @@
 # dugo
-a test for go 
+Just a test for Go Web Program
