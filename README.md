@@ -1,2 +1,1 @@
-# dugo
-Just a test for Go Web Program
+in this project's branch just for learn golang and some test code.
